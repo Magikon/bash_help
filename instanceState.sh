@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#--------------------------------------------#
+#-------   Developer Mikayel Galyan   -------#
+#---   Email: mikayel.galyan@gmail.com   ----#
+#--------------------------------------------#
 region=<region>
 profile=<profilename>
 state=start # or stop
