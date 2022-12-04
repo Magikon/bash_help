@@ -7,6 +7,8 @@
 #profile=<profilename>
 state=start # or stop
 #name=somename*
+######################################################################################################################################################################################
+start=`date +%s`
 while getopts p:r:n:s:h flag
 do
     case "${flag}" in
@@ -62,4 +64,4 @@ for c in ${!IDs[@]}; do
         done
 done
 
-echo "Done"
+echo "Task ended in " $((`date +%s`-start)) "seconds"
