@@ -52,17 +52,14 @@ for c in ${!IDs[@]}; do
         while :; do
             if [[ $state == "start" ]];then
                 temp=$(aws ec2 describe-instance-status --instance-ids ${IDs[$c]} --region $region --profile $profile --query 'InstanceStatuses[*].InstanceStatus[].Status' --output text)
-                if [[ $temp == "ok" ]];then echo "$instancename in working order";break;fi
-                echo "$instancename $temp";
-            fi
-            if [[ $state == "stop" ]];then
+                if [[ $temp == "ok" ]];then echo "instanceId = ${IDs[$c]}, $instancename in working order";break;fi
+            elif [[ $state == "stop" ]];then
                 temp=$(aws ec2 describe-instances --instance-ids ${IDs[$c]} --region $region --profile $profile --output text --query 'Reservations[*].Instances[*].State[].Name');
-                if [[ $temp == "stopped" ]];then echo "$instancename shut down";break;fi
-                echo $instancename $temp;
+                if [[ $temp == "stopped" ]];then echo "instanceId = ${IDs[$c]}, $instancename is shutted down";break;fi
             fi
-            sleep 5;
+            echo $instancename $temp;
+            sleep 10;
         done
-   echo "instanceId = ${IDs[$c]}, $instancename  now in $temp state"
 done
 
 echo "Done"
