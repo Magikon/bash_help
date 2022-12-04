@@ -29,8 +29,8 @@ echo "name: $name";
 echo "state: $state";
 echo "-----------------";
 
-echo "Please enter code from your mfa device"
-aws-mfa --profile $profile # if you use aws-mfa, else comment this line
+echo "Please enter the code from your mfa device"
+aws-mfa --profile $profile # If you are using aws-mfa otherwise comment this line
 declare -a IDs
 for i in $(aws ec2 describe-instances --filters "Name=tag:Name,Values=$name" --region $region --profile $profile --output text --query 'Reservations[*].Instances[*].InstanceId')
 do
