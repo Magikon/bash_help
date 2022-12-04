@@ -3,19 +3,25 @@
 #-------   Developer Mikayel Galyan   -------#
 #---   Email: mikayel.galyan@gmail.com   ----#
 #--------------------------------------------#
-region=<region>
-profile=<profilename>
+#region=<region>
+#profile=<profilename>
 state=start # or stop
-name=somename*
-while getopts p:r:n:s: flag
+#name=somename*
+while getopts p:r:n:s:h flag
 do
     case "${flag}" in
         p) profile=${OPTARG};;
         r) region=${OPTARG};;
         n) name=${OPTARG};;
         s) state=${OPTARG};;
+        h) echo "example: ./`basename "$0"` -r <region> -p <profilename> -s start -n somename*"
+           echo "If you write default values in the stript file, you can omit some options."
+           echo "example: ./`basename "$0"` -s start -n somename*"
+           echo "example: ./`basename "$0"` -s start"
+           exit;;
     esac
 done
+
 echo "-----------------";
 echo "profile: $profile";
 echo "region: $region";
