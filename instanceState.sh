@@ -53,7 +53,7 @@ for c in ${!IDs[@]}; do
             if [[ $state == "start" ]];then
                 temp=$(aws ec2 describe-instance-status --instance-ids ${IDs[$c]} --region $region --profile $profile --query 'InstanceStatuses[*].InstanceStatus[].Status' --output text)
                 if [[ $temp == "ok" ]];then break;fi
-                echo $instancename $temp;
+                echo "$instancename in working order";
             fi
             if [[ $state == "stop" ]];then
                 temp=$(aws ec2 describe-instances --instance-ids ${IDs[$c]} --region $region --profile $profile --output text --query 'Reservations[*].Instances[*].State[].Name');
