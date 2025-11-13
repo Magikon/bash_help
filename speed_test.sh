@@ -7,7 +7,6 @@ INTERVAL=30
 SAMPLES=4
 WINDOW=120
 
-# === определить путь к лог-файлу рядом со скриптом ===
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOGFILE="${SCRIPT_DIR}/curl_speedtest.log"
 
